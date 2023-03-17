@@ -1,0 +1,42 @@
+$red: red;
+$blue: #1a77f0;
+$white: white;
+$grey: #3b3b3b;
+
+/* Input tag for text */
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 150px;
+    
+    input[type=text] {
+        width: 50%;
+    }
+
+}
+
+/* Validation of form */
+small {
+    color: $red;
+}
+
+/* Add Slide Button */
+.addButton {
+    background-color: $blue;
+    color: $white;
+}
+
+/* Carousel image */
+.image-carousel {
+    width: 600px;
+    background-color: $grey;
+    color: $white;
+
+    .image-width-height {
+        object-fit: contain;
+        width: 100%;
+        height: 370px;
+    }
+}
+

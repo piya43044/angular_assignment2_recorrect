@@ -1,0 +1,66 @@
+<div> 
+    
+    <!-- Dynamically added Carousel Image -->
+    <h1>Angular Carousel</h1>
+    <div class="image-carousel">
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let carousel of carouselArray">
+                <div class="picsum-img-wrapper" >
+                    <img class="image-width-height" [src]="carousel.imageUrl" [alt]="carousel.slideCaption" />
+                </div>
+                <div class="carousel-caption">
+                    <h5>{{ carousel.slideCaption }}</h5>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    
+    <!-- Dynamically added slides and delete slide button -->
+    <div class="added-slides">
+        <h2>Added slides</h2>
+        <ul *ngFor="let slide of carouselArray; index as i">
+            <li>
+                <span>Slide - {{i+1}} </span>
+                <button type="button" (click)="deleteSlide(i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Add new slide form -->
+    <div>
+        <h2>Add new slide</h2>
+
+        <form [formGroup]="addSlideForm" (ngSubmit)="addSlide()">
+                <div class="form">
+                    <div>
+                        <label for="imageUrl">Image url</label><br/>
+                        <input type="text" 
+                            placeholder="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" 
+                            formControlName="imageUrl">
+                        <!-- Validation Error message of Image Url -->
+                        <div *ngIf="addSlideForm.get('imageUrl')?.invalid && (addSlideForm.get('imageUrl')?.touched)">
+                            <small>Image Url must be required and correct</small>
+                        </div>
+                    </div>
+        
+                    <div>
+                        <label for="slideCaption">Slide caption</label><br/>
+                        <input type="text" 
+                            placeholder="Tree sunset with cloudy sky" 
+                            formControlName="slideCaption">
+                        <!-- Validation Error message of Slide Caption -->
+                        <div *ngIf="addSlideForm.get('slideCaption')?.invalid && (addSlideForm.get('slideCaption')?.touched)">
+                            <small>Image Url must be required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit button for adding new slide -->
+                <button class="addButton" type="submit" [disabled]="addSlideForm.invalid ">Add slide</button>
+                <!-- Validation Error for Submit the form -->
+                <div *ngIf="addSlideForm?.invalid && addSlideForm?.touched">
+                    <small>Image Url and Slide Caption must be required correctly</small>
+                </div>
+        </form>
+    </div>
+</div>
