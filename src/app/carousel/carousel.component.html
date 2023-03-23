@@ -1,13 +1,16 @@
 <!-- Dynamically added Carousel Image -->
 <h1>Angular Carousel</h1>
 
+<!-- Display the data according to the image is avaliable in carousel or not -->
 <div *ngIf="isEmptyCarousel; then emptyCarousel else carouselData">
 </div>
 
+<!-- This is display when image is not avaliable -->
 <ng-template #emptyCarousel>
     <p>No image in Carousel</p>
 </ng-template>
 
+<!-- This is display when image is avaliable in carousel -->
 <ng-template #carouselData>
     <div class="image-carousel">
         <ngb-carousel>
