@@ -10,6 +10,7 @@ import { Carousel } from '../models/carousel.model';
 export class CarouselComponent implements OnInit {
 
   addSlideForm !: FormGroup;
+  isEmptyCarousel !: boolean;
   carouselArray : Carousel[]=[
     {
       imageUrl : 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
@@ -27,7 +28,24 @@ export class CarouselComponent implements OnInit {
       imageUrl : new FormControl('', [Validators.required, Validators.minLength(6)]),
       slideCaption : new FormControl('',Validators.required)
     })
+
+    this.checkEmptyArray();
   }
+
+  ngDoCheck(){
+    this.checkEmptyArray();
+  }
+
+  // Check the array whether it is empty or not
+  checkEmptyArray(){
+    if(this.carouselArray.length>0){
+      this.isEmptyCarousel=false;
+    }
+    else{
+      this.isEmptyCarousel = true;
+    }
+  }
+
 
   // Add Slides
   addSlide(){
